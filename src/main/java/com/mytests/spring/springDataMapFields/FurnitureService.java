@@ -23,10 +23,13 @@ public class FurnitureService {
         for (Furniture furniture : all) {
             System.out.println(furniture.toString());
         }
-        System.out.println("---by attributes:---");
+        System.out.println("---test search by map keys and values:---");
         for (Furniture furniture : furnitureRepository.findByAttributeAndValue("color", "white")) {
             System.out.println(furniture);
         }
-
+        System.out.println("---test using || as concatenation:---");
+        for (String furniture : furnitureRepository.getIdsNamesPricesConcatenation()) {
+            System.out.println(furniture);
+        }
     }
 }

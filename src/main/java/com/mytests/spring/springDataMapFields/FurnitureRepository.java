@@ -14,9 +14,11 @@ import java.util.List;
  */
 public interface FurnitureRepository extends CrudRepository<Furniture, Integer> {
 
-
+    // https://youtrack.jetbrains.com/issue/IDEA-297171
     @Query("select p from Furniture p where p.attributes[:key] = :value")
     List<Furniture> findByAttributeAndValue(@Param("key") String attr_key, @Param("value") String attr_value);
 
-
+    // https://youtrack.jetbrains.com/issue/IDEA-260631
+    @Query("select id||': '||name||' ('||price||')' from Furniture ")
+    List<String> getIdsNamesPricesConcatenation();
 }
