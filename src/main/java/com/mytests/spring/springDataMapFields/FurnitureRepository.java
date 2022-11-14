@@ -18,6 +18,9 @@ public interface FurnitureRepository extends CrudRepository<Furniture, Integer> 
     @Query("select p from Furniture p where p.attributes[:key] = :value")
     List<Furniture> findByAttributeAndValue(@Param("key") String attr_key, @Param("value") String attr_value);
 
+    @Query("select p from Furniture p where p.attributes[?1] = ?2")
+    List<Furniture> findByAttributeAndValue2(String attr_key, String attr_value);
+
     // https://youtrack.jetbrains.com/issue/IDEA-260631
     @Query("select id||': '||name||' ('||price||')' from Furniture ")
     List<String> getIdsNamesPricesConcatenation();
